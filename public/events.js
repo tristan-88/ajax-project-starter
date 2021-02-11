@@ -18,3 +18,39 @@ const firstPicture = async () => {
 };
 
 document.getElementById('new-pic').addEventListener('click', firstPicture)
+
+let upVote = document.getElementById("upvote");
+let downVote = document.getElementById("downvote");
+let score = document.querySelector('.score')
+upVote.addEventListener('click',  () => {
+   upVoting()
+})
+downVote.addEventListener('click', () => {
+    downVoting()
+})
+
+const upVoting = async () => {
+    const res = await fetch("/kitten/upvote", {
+        method: "PATCH"
+     });
+    const json = await res.json()
+    if (res.ok) {
+       score.innerHTML = json.score 
+    } else {
+        document.querySelector(".error").innerHTML =
+          "🚫Something went wrong! Please try again!🚫";
+    }
+    
+}
+const downVoting = async () => {
+  const res = await fetch("/kitten/downvote", {
+    method: "PATCH",
+  });
+  const json = await res.json();
+  if (res.ok) {
+    score.innerHTML = json.score;
+  } else {
+    document.querySelector(".error").innerHTML =
+      "🚫Something went wrong! Please try again!🚫";
+  }
+};
