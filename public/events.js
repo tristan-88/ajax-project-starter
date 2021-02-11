@@ -7,8 +7,13 @@ const firstPicture = async () => {
     const response = await fetch("/kitten/image")
     const json = await response.json();
     console.log(json)
-    let catPic = document.querySelector(".cat-pic")
-    catPic.src = json.src;
+    if (response.ok) {
+        
+        let catPic = document.querySelector(".cat-pic")
+        catPic.src = json.src;
+    } else {
+        document.querySelector('.error').innerHTML = "🚫Something went wrong! Please try again!🚫"
+    }
     document.querySelector(".loader").innerHTML = "";
 };
 
