@@ -101,7 +101,11 @@ const callbackComment = async (comment) => {
     deleteButton.classList.add('delete-button')
     deleteButton.setAttribute('id', "delete-button")
     deleteButton.innerHTML = 'delete'
-    commentAdd.appendChild(deleteButton)
+  commentAdd.appendChild(deleteButton)
+  
+  deleteButton.addEventListener('click', () => {
+    commentAdd.innerHTML = null
+  })
 
   }
 
